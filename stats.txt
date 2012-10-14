@@ -1,0 +1,23 @@
+#events: 10000000
+
+ 29.04s user  1.03s system 86% cpu   34.83 total (C++)
+ 29.12s user  1.09s system 85% cpu   35.48 total (CRoot)
+ 54.83s user  1.34s system 87% cpu 1:04.36 total (go-croot)
+ 65.64s user  0.10s system 99% cpu 1:05.94 total (gob-lzw)
+109.55s user 47.52s system 98% cpu 2:40.03 total (gob-none)
+243.94s user  2.07s system 99% cpu 4:07.95 total (go-hdf5)
+289.38s user 17.43s system 95% cpu 5:19.65 total (gob-gzip)
+289.69s user 16.80s system 98% cpu 5:10.70 total (gob-zlib)
+303.67s user 19.47s system 95% cpu 5:38.83 total (hepio-gob-gzip)
+
+ll event.*
+-rw-r--r-- 1 binet binet 2.4M Apr 28 14:15 event.gob.z
+-rw-r--r-- 1 binet binet 2.4M May  3 08:24 event.hep
+-rw-r--r-- 1 binet binet 219M Apr 28 13:35 event.c.root
+-rw-r--r-- 1 binet binet 219M Apr 28 13:36 event.cxx.root
+-rw-r--r-- 1 binet binet 273M Apr 28 13:36 event.go.root
+-rw-r--r-- 1 binet binet 281M Apr 28 13:44 event.h5
+-rw-r--r-- 1 binet binet 308M May  3 11:32 event.gob.gz
+-rw-r--r-- 1 binet binet 308M May  3 11:39 event.gob.z
+-rw-r--r-- 1 binet binet 308M May  3 11:51 event.hep
+-rw-r--r-- 1 binet binet 436M May  3 11:43 event.gob              
