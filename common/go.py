@@ -54,14 +54,14 @@ from waflib.Errors import WafError
 ########################################################################
 
 class go(Task):
-	run_str = '${GO_6G} ${GCFLAGS} ${GCPATH_ST:INCPATHS} -I${GOLIBDIR} -o ${TGT} ${SRC}'
+	run_str = '${GO_6G} ${GCFLAGS} ${GCPATH_ST:INCPATHS} -o ${TGT} ${SRC}'
 	scan = go_scan.scan
 
 class gopackage(stlink_task):
 	run_str = '${GO_PACK} grc ${TGT} ${SRC}'
 
 class goprogram(link_task):
-	run_str = '${GO_6L} ${GLFLAGS} ${GLPATH_ST:INCPATHS} -L${GOLIBDIR} -o ${TGT} ${SRC}'
+	run_str = '${GO_6L} ${GLFLAGS} ${GLPATH_ST:INCPATHS} -o ${TGT} ${SRC}'
 	inst_to = '${GOBINDIR}'
 	chmod   = Utils.O755
 

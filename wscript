@@ -42,27 +42,26 @@ def build(ctx):
     ctx(features='go goprogram',
         source  = 'cmd/go-croot-write-tree/main.go',
         target  = 'go-croot-write-tree',
+        includes= [ctx.env.GOLIBDIR],
         use     = ['github.com/sbinet/go-croot/pkg/croot',]
         )
 
     ctx(features='go goprogram',
         source  = 'cmd/go-h5-write-tree/main.go',
         target  = 'go-h5-write-tree',
-        #use     = ['github.com/sbinet/go-hdf5/pkg/hdf5',
-        #           'github.com/sbinet/go-croot/pkg/croot',]
+        includes= [ctx.env.GOLIBDIR],
         )
 
     ctx(features='go goprogram',
         source  = 'cmd/go-gob-write-tree/main.go',
         target  = 'go-gob-write-tree',
-        use     = ['github.com/sbinet/go-croot/pkg/croot',]
+        includes= [ctx.env.GOLIBDIR],
         )
 
     ctx(features='go goprogram',
         source  = 'cmd/go-hio-write-tree/main.go',
         target  = 'bench-hio-ex-tree',
-        #use     = ['github.com/sbinet/go-croot/pkg/croot',
-        #           'github.com/sbinet/go-hep/pkg/hep/io']
+        includes= [ctx.env.GOLIBDIR],
         )
 
     # readers...
@@ -83,19 +82,17 @@ def build(ctx):
     ctx(features='go goprogram',
         source  = 'cmd/go-gob-read-tree/main.go',
         target  = 'go-gob-read',
-        #use     = [],
+        includes= [ctx.env.GOLIBDIR],
         )
 
     ctx(features='go goprogram',
         source  = 'cmd/go-hio-read-tree/main.go',
         target  = 'go-hio-read-tree',
-        #use     = ['github.com/sbinet/go-hep/pkg/hep/io']
+        includes= [ctx.env.GOLIBDIR],
         )
 
     ctx(features='go goprogram',
         source  = 'cmd/go-croot-read-tree/main.go',
         target  = 'go-croot-read-tree',
-        #use     = ['github.com/sbinet/go-croot/pkg/croot',]
+        includes= [ctx.env.GOLIBDIR],
         )
-
-    #ctx.install_files('${PREFIX}/include', 'include/croot.h')
