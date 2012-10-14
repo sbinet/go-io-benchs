@@ -77,6 +77,12 @@ def extract_nodes_with_ext(self, fromattr, ext):
 	setattr(self, fromattr, no_nodes)
 	return src_nodes
 
+@feature('go')
+@after_method('apply_incpaths')
+def insert_golibdir(self):
+    self.env.prepend_value('INCPATHS', self.env.GOLIBDIR)
+
+                    
 @feature('gopackage')
 @before_method('apply_link')
 def modify_install_path(self):
