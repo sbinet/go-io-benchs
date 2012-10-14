@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"flag"
-	"os"
-	"io"
-	"encoding/gob"
 	"compress/gzip"
-	"compress/zlib"
 	"compress/lzw"
+	"compress/zlib"
+	"encoding/gob"
+	"flag"
+	"fmt"
+	"io"
+	"os"
 
 	"github.com/sbinet/go-croot/pkg/croot"
 )
@@ -24,11 +24,11 @@ type Event struct {
 }
 
 var evtmax *int = flag.Int("evtmax", 10000, "number of events to generate")
-var compr  *string=flag.String("compr", "gzip", "name of the compression method (none for none)")
+var compr *string = flag.String("compr", "gzip", "name of the compression method (none for none)")
 
 func tree0(f io.Writer) {
 	t := gob.NewEncoder(f)
-	
+
 	// fill some events with random numbers
 	nevents := *evtmax
 	for iev := 0; iev != nevents; iev++ {
@@ -68,17 +68,17 @@ func main() {
 		fname = fmt.Sprintf("%s.z", fname)
 	case "lzw":
 		fname = fmt.Sprintf("%s.lzw", fname)
-	case "none","":
+	case "none", "":
 		fname = fname
 	default:
 		fname = fname
 	}
-	
-	f,err := os.Create(fname)
+
+	f, err := os.Create(fname)
 	if err != nil {
 		panic(err)
 	}
-	
+
 	var ff io.WriteCloser = nil
 	switch *compr {
 	case "gzip":
@@ -100,4 +100,5 @@ func main() {
 	ff.Close()
 	f.Close()
 }
+
 // EOF

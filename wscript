@@ -89,3 +89,29 @@ def build(ctx):
         source  = 'cmd/go-croot-read-tree/main.go',
         target  = 'go-croot-read-tree',
         )
+
+def run(ctx):
+    import os, sys
+    try:
+        from commands import getstatusoutput
+    except ImportError: # py3
+        from subprocess import getstatusoutput
+    import shutil
+    try:
+        shutil.rmtree("test-io-benchs")
+    except OSError:
+        pass
+    cwd = os.getcwd()
+    for d in ["go","cxx"]:
+        os.chdir(cwd)
+        testdir = os.path.join("test-io-benchs",d)
+        os.makedirs(testdir)
+        os.chdir(testdir)
+        for step in ("write", "read"):
+            cmd = "time ../../__build__/%s-croot-%s-tree >& /dev/null" % (d, step)
+            status, output = getstatusoutput(cmd)
+            sys.stdout.write("%s\n" % ("*"*80),)
+            if status == 0:
+                sys.stdout.write("%s-%s:%s\n" % (step, d,output))
+            else:
+                sys.stdout.write("%s-%s: **ERROR**\n%s\n" % (step,d,output))

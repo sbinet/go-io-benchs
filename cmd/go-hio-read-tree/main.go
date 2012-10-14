@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"flag"
+	"fmt"
 
 	hio "github.com/sbinet/go-hep/pkg/hep/io"
 )
@@ -21,11 +21,11 @@ var evtmax *int = flag.Int("evtmax", 10000, "number of events to generate")
 var fname *string = flag.String("fname", "event.hep", "hepfile to read back")
 
 func tree0(f *hio.File) {
-	t,err := f.OpenTuple("events")
+	t, err := f.OpenTuple("events")
 	if err != nil {
 		panic(err)
 	}
-	
+
 	// fill some events with random numbers
 	nevents := int64(*evtmax)
 	if nevents < 0 {
@@ -56,16 +56,17 @@ func tree0(f *hio.File) {
 func main() {
 	flag.Parse()
 	fname := "event.hep"
-	
-	f,err := hio.Open(fname)
+
+	f, err := hio.Open(fname)
 	if err != nil {
 		panic(err)
 	}
-	
+
 	tree0(f)
 	err = f.Close()
 	if err != nil {
 		panic(err)
 	}
 }
+
 // EOF

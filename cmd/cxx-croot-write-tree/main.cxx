@@ -9,7 +9,7 @@
 
 #include "croot_event.h"
 
-int evtmax = 1000;
+int evtmax = 10000;
 
 void tree0(CRoot_File f) 
 {
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
   CRoot_Cintex_Enable();
   define_structs();
 
-  const char *fname = "event.c.root";
+  const char *fname = "event.root";
   printf(":: writing to [%s]...\n", fname);
   CRoot_File f = CRoot_File_Open(fname, "recreate",
                                  "my event file", 1, 0);

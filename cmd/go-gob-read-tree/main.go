@@ -1,16 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"flag"
+	"fmt"
 
-	"os"
-	"io"
-	"encoding/gob"
 	"compress/gzip"
-	"compress/zlib"
 	"compress/lzw"
-
+	"compress/zlib"
+	"encoding/gob"
+	"io"
+	"os"
 )
 
 type Det struct {
@@ -25,7 +24,7 @@ type Event struct {
 
 var evtmax *int = flag.Int("evtmax", 10000, "number of events to generate")
 var fname *string = flag.String("fname", "event.gob.gz", "hepfile to read back")
-var compr  *string=flag.String("compr", "gzip", "name of the compression method (none for none)")
+var compr *string = flag.String("compr", "gzip", "name of the compression method (none for none)")
 
 func tree0(f io.Reader) {
 	t := gob.NewDecoder(f)
@@ -62,23 +61,23 @@ func main() {
 		fname = fmt.Sprintf("%s.z", fname)
 	case "lzw":
 		fname = fmt.Sprintf("%s.lzw", fname)
-	case "none","":
+	case "none", "":
 		fname = fname
 	default:
 		fname = fname
 	}
-	
-	f,err := os.Open(fname)
+
+	f, err := os.Open(fname)
 	if err != nil {
 		panic(err)
 	}
-	
+
 	var ff io.ReadCloser = nil
 	switch *compr {
 	case "gzip":
-		ff,err = gzip.NewReader(f)
+		ff, err = gzip.NewReader(f)
 	case "zlib":
-		ff,err = zlib.NewReader(f)
+		ff, err = zlib.NewReader(f)
 	case "lzw":
 		ff = lzw.NewReader(f, lzw.MSB, 8)
 		err = nil
@@ -94,4 +93,5 @@ func main() {
 	ff.Close()
 	f.Close()
 }
+
 // EOF

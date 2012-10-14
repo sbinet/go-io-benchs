@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"flag"
+	"fmt"
 
 	"github.com/sbinet/go-croot/pkg/croot"
 	hio "github.com/sbinet/go-hep/pkg/hep/io"
@@ -21,11 +21,11 @@ type Event struct {
 var evtmax *int = flag.Int("evtmax", 10000, "number of events to generate")
 
 func tree0(f *hio.File) {
-	t,err := f.CreateTuple("events")
+	t, err := f.CreateTuple("events")
 	if err != nil {
 		panic(err)
 	}
-	
+
 	// fill some events with random numbers
 	nevents := *evtmax
 	for iev := 0; iev != nevents; iev++ {
@@ -58,16 +58,17 @@ func tree0(f *hio.File) {
 func main() {
 	flag.Parse()
 	fname := "event.hep"
-	
-	f,err := hio.Create(fname)
+
+	f, err := hio.Create(fname)
 	if err != nil {
 		panic(err)
 	}
-	
+
 	tree0(f)
 	err = f.Close()
 	if err != nil {
 		panic(err)
 	}
 }
+
 // EOF
